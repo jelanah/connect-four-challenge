@@ -8,10 +8,20 @@ class Board
 
   def initialize
     generate_board
-  end
+  end 
+
+  # This method drops a checker down the column. 
 
   def drop_checker(color, column)
+    5.downto 0 do |row|
+      if rows[row][column].empty?
+        rows[row][column] = "O"
+        return
+      end
+    end
+    puts "You can't put a checker in a full column!" 
   end
+
 
   def generate_board
     rows = []
