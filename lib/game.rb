@@ -12,5 +12,10 @@ class Game
 
   def start
     puts 'A new game has begun!'
+    @board.drop_checker(:black, 3)
+    @board.drop_checker(:black, 2)
+    @board.drop_checker(:black, 3)
+    @board.print_grid
+
   end
 end
