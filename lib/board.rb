@@ -13,13 +13,14 @@ class Board
   # This method drops a checker down the column. 
 
   def drop_checker(color, column)
-    5.downto 0 do |row|
+    5.downto 0 do |row| #Counts down to zero
       if rows[row][column].empty?
         rows[row][column] = "O"
-        return
+        return true
       end
     end
     puts "You can't put a checker in a full column!" 
+    return false 
   end
 
 
