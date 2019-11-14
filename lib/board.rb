@@ -13,9 +13,25 @@ class Board
   # This method drops a checker down the column. 
 
   def drop_checker(color, column)
+
+    if column < 0 || column > 5
+      puts "Insert a column number 0-6!"
+      return false
+    end
+    
+    
+    if color != :red && color != :black
+      puts "Color must be red or black!"
+      return false
+    end
+    
     5.downto 0 do |row| #Counts down to zero
       if rows[row][column].empty?
-        rows[row][column] = "O"
+        if color == :black 
+          rows[row][column] = "O"
+        else
+          rows[row][column] = "X"
+        end
         return true
       end
     end
