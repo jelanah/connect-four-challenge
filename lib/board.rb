@@ -8,13 +8,14 @@ class Board
 
   def initialize
     generate_board
+    print_grid
   end 
 
   # This method drops a checker down the column. 
 
   def drop_checker(color, column)
 
-    if column < 0 || column > 5
+    if column < 0 || column > 6
       puts "Insert a column number 0-6!"
       return false
     end
@@ -32,9 +33,11 @@ class Board
         else
           rows[row][column] = "X"
         end
+        print_grid
         return true
       end
     end
+    
     puts "You can't put a checker in a full column!" 
     return false 
   end
@@ -68,6 +71,41 @@ class Board
   end
 
   def game_won?
-    false
+    winner = false
+    counter = 0
+    color = ""
+    # column= 4
+  
+    until winner
+      5.downto(0) do |column| 
+        y = column
+        0.upto(5) do |x| 
+          if (rows[y][x] != "") && (rows[y][x] == rows[y][x+1]) # checks if adjacent is equal
+            counter+=1
+            puts "counter: #{counter}"
+          else
+            counter = 0
+            puts "counter else: #{counter}"
+          end
+          if counter == 3
+            winner = true
+            if rows[y][x] == "O" # to print the winner's color later
+              color = "black"
+            else
+              color = "red"
+            end
+            puts "Congratulations, #{color}, you won!"
+            return true
+            # break
+          end
+        end
+        # if winner == true
+        #   puts "Congratulations, #{color}, you won!"
+        #   return true
+        # else
+        return false
+        # end
+      end
+    end
   end
 end

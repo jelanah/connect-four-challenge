@@ -7,33 +7,32 @@ class Game
   def initialize
     @board = Board.new
     @current_player = :black
-    @board.print_grid
+    
     
   end
 
-  # Runs the game until there is a winner.
+  
   def start
     puts 'A new game has begun!'
-    # puts "Whats your color? Red or black"
-    # color = gets 
-    # puts "Okay," + black + ". You're up first!"
 
-  until @board.game_won?
-    puts "Hey " + @current_player.to_s + ", it's your turn. Which column do you want to place the checker?"
-    col = gets.chomp.to_i
-    @board.drop_checker(@current_player,col)
-    @board.print_grid
-    
-    if @current_player == :black
-      @current_player = :red
+    # Runs the game until there is a winner.
+    until @board.game_won?()
+      puts "Hey " + @current_player.to_s + ", it's your turn. Which column do you want to place the checker?"
+      col = gets.chomp.to_i
       
-    else
-    @current_player = :black
-    end
-
-
     
-  end 
+      if @board.drop_checker(@current_player,col) == true
+       
+        # change player
+        if @current_player == :black
+          @current_player = :red
+        else
+        @current_player = :black
+        end
 
-  end
+      end
+
+      
+    end
+  end 
 end

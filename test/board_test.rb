@@ -26,4 +26,5 @@ class BoardTest < MiniTest::Test
     assert_equal @board.drop_checker(:pink,5), false
   end
 
+
 end
